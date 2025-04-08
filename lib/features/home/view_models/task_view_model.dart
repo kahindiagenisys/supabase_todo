@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:my_todo/locator.dart';
@@ -17,7 +18,7 @@ class TaskViewModel with ChangeNotifier {
   }
 
   Future<void> toggleTaskStatus(String id, bool isCompleted) async {
-   await _taskRepo.toggleTaskStatus(id: id, isCompleted: isCompleted);
+    await _taskRepo.toggleTaskStatus(id: id, isCompleted: isCompleted);
   }
 
   Future<void> saveTask({
@@ -27,6 +28,7 @@ class TaskViewModel with ChangeNotifier {
     required String userId,
     Function(String message)? onSuccess,
     Function(String message)? onError,
+    File? file,
   }) async {
     try {
       if (_isLoading) return;
@@ -37,6 +39,7 @@ class TaskViewModel with ChangeNotifier {
         title: title,
         description: description,
         userId: userId,
+        file: file,
       );
 
       onSuccess?.call("Task saved successfully");
@@ -61,5 +64,4 @@ class TaskViewModel with ChangeNotifier {
       onError?.call(error.toString());
     }
   }
-
 }

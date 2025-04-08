@@ -1,17 +1,15 @@
-import 'package:ferry/ferry.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:my_todo/features/home/view_models/task_view_model.dart';
 import 'package:my_todo/features/sing_in/view_models/sing_in_view_model.dart';
 import 'package:my_todo/features/sing_up/view_models/sing_up_view_model.dart';
 import 'package:my_todo/repositories/sing_in/sing_in_repo.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:get_it/get_it.dart';
 import 'package:my_todo/repositories/sing_up/sing_up_repo.dart';
 import 'package:my_todo/repositories/task/task_repo.dart';
 import 'package:my_todo/resources/constants/constant_url.dart';
-import 'package:my_todo/services/graphql/graphql.dart';
 import 'package:my_todo/services/secure_storage/secure_storage.dart';
 import 'package:my_todo/services/token/token_service.dart';
 import 'package:my_todo/state/global_state_store.dart';
@@ -45,7 +43,6 @@ Future<void> setUp() async {
   locator.registerSingleton<SingInRepo>(SingInRepo());
   locator.registerSingleton<SingUpRepo>(SingUpRepo());
   locator.registerSingleton<TaskRepo>(TaskRepo());
-  locator.registerSingleton<Client>(initClient(serverURL));
 
   /// registerLazySingleton locator
   locator.registerLazySingleton<TaskViewModel>(
