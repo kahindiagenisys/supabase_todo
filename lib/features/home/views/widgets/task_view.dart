@@ -92,6 +92,7 @@ class _TaskViewState extends State<TaskView> {
                   if (isDelete && context.mounted) {
                     await _task.deleteTask(
                       id: widget.task['id'],
+                      filePath: widget.task['file_path'],
                       onSuccess: (message) {
                         showSuccessToastMessage(message: message);
                       },

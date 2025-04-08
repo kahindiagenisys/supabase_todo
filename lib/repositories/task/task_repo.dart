@@ -25,10 +25,12 @@ class TaskRepo implements TaskRepoInterface {
 
       if (file != null) {
         final bucket = _supabaseClient.storage.from('task-files');
-        final fileName = "${DateTime.now().millisecondsSinceEpoch}_${p.basename(file.path)}";
+        final fileName =
+            "${DateTime.now().millisecondsSinceEpoch}_${p.basename(file.path)}";
         final filePath = "user_uploads/$userId/$fileName";
 
-        final mimeType = lookupMimeType(file.path) ?? 'application/octet-stream';
+        final mimeType =
+            lookupMimeType(file.path) ?? 'application/octet-stream';
 
         // 👇 Upload file with upsert
         await bucket.upload(
@@ -62,7 +64,7 @@ class TaskRepo implements TaskRepoInterface {
   }
 
   @override
-  Future<void> deleteTask({required String id}) async {
+  Future<void> deleteTask({required String id, String? filePath}) async {
     try {
       await _supabaseClient.from('todos').delete().eq('id', id);
     } catch (e) {

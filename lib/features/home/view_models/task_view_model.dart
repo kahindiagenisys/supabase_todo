@@ -53,11 +53,12 @@ class TaskViewModel with ChangeNotifier {
 
   Future<void> deleteTask({
     required String id,
+    String? filePath,
     Function(String message)? onSuccess,
     Function(String message)? onError,
   }) async {
     try {
-      await _taskRepo.deleteTask(id: id);
+      await _taskRepo.deleteTask(id: id,filePath: filePath);
       onSuccess?.call("Task deleted successfully");
     } catch (error) {
       log("❌ Error: $error");
