@@ -1,0 +1,7 @@
+targets:
+  $default:
+    builders:
+      ferry_generator|req_builder:
+        options:
+          schema: lib/graphql/schema.graphql
+          queries_glob: lib/graphql/queries/*.graphql
